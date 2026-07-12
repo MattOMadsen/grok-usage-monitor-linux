@@ -3,12 +3,13 @@
 En letvægts system tray-app der viser dit Grok-forbrug direkte i top-panelet på Zorin OS / Ubuntu.
 
 ## Features
-- Farvede procenter i menu baren (Grok Build / API / Chat)
-- Weekly SuperGrok Limit + progress bar + breakdown
+- Farvede procenter og progress bar i menu baren (Grok Build / API / Chat)
+- **Settings...** vindue: Manuel redigering af alle værdier (gemmes automatisk)
 - Daglig brugsgraf i detaljeret visning
-- "Refresh Now" knap
-- Auto-refresh hvert 5. minut
-- Demo-data indbygget (nemt at udskifte med rigtig data senere)
+- "Refresh Now" + auto-refresh hvert 5. minut
+- Dynamisk ikon der skifter efter forbrugsniveau (advarsel ved højt forbrug)
+- About dialog
+- Demo-data + fuld JSON-persistens (`~/.config/grok-usage-monitor/config.json`)
 
 ## Installation på Zorin OS
 
@@ -25,32 +26,38 @@ python3 main.py
 
 ## Start automatisk ved login (anbefalet)
 
-1. Åbn "Startup Applications" (Søg efter det i menuen)
-2. Tilføj ny entry:
-   - **Navn**: Grok Usage Monitor
-   - **Kommando**: `python3 /fuld/sti/til/main.py`  (ret stien!)
-   - **Kommentar**: Viser Grok forbrug i top-panelet
+1. Åbn "Startup Applications"
+2. Tilføj ny entry med kommandoen til `main.py`
 
-Eller brug .desktop-filen (se nedenfor).
+Eller brug `grok-usage-monitor.desktop` filen (ret stien og kopier til `~/.config/autostart/`).
+
+## Sådan bruger du Settings
+1. Højreklik på ikonet i top-panelet
+2. Vælg **Settings...**
+3. Rediger Overall %, Grok Build, API, Chat og Reset date
+4. Tryk **Save** – værdierne opdateres live og gemmes til config-filen
+
+Næste gang du starter appen, husker den dine indstillinger.
 
 ## Filer i repoet
-- `main.py` - Hovedprogrammet (rettet for syntax-fejl)
-- `grok-usage-monitor.desktop` - Til autostart
+- `main.py` – Hovedprogram (v1.1)
+- `grok-usage-monitor.desktop` – Autostart
+- `README.md`
 
 ## Vigtigt: Kodegennemgang
-Denne version er gennemgået og rettet:
-- `def init(self)` → `def __init__(self)`
-- `if name == "main"` → `if __name__ == "__main__"`
-- Fjernet stray tekst midt i koden
-- Mindre forbedringer til labels og struktur
+Denne version er gennemgået og forbedret:
+- Oprindelige syntax-fejl rettet (`__init__`, `__name__`)
+- Ny Settings-dialog + JSON-persistens
+- Dynamisk ikon-håndtering
+- Bedre struktur, fejlhåndtering og kommentarer
 
 ## Fremtidige forbedringer (TODO)
-- Tilføj rigtig datahentning (erstat `get_usage_data()`)
-- Bedre/brugerdefineret ikon i menu baren
-- Indstillinger-vindue til manuel indtastning af værdier
-- Pakkefil / .deb eller Flatpak
+- Rigtig datahentning (når Grok tilbyder officiel usage API)
+- Mulighed for at vælge custom ikon (PNG)
+- Bedre grafer med Gtk.DrawingArea eller matplotlib
+- Pakkefil (.deb / Flatpak)
 
-Denne app er lavet med Grok (og kode tjekket for fejl).
+Denne app er lavet med Grok (kode tjekket og udvidet).
 
 ## Licens
-MIT License - brug den som du vil!
+MIT License
