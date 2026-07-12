@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Grok Usage Monitor
+Comment=System tray app that shows your Grok usage in the top panel (Zorin OS / Ubuntu)
+Exec=python3 /home/YOUR_USERNAME/grok-usage-monitor-linux/main.py
+Icon=dialog-information
+Terminal=false
+Type=Application
+Categories=Utility;System;
+X-GNOME-Autostart-enabled=true
+StartupNotify=false
+
+# Edit the Exec path above to match where you placed the folder!
+# Then copy this file to ~/.config/autostart/ or use Startup Applications GUI
