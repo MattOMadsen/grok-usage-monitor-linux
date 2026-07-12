@@ -51,7 +51,7 @@ class GrokUsageMonitor:
         menu.append(header)
 
         progress = Gtk.MenuItem(
-            label=f"{'\u2588' * (self.usage_data['overall_used'] // 5)}{'\u2591' * (20 - self.usage_data['overall_used'] // 5)} "
+            label=f"{'█' * (self.usage_data['overall_used'] // 5)}{'░' * (20 - self.usage_data['overall_used'] // 5)} "
                   f"{self.usage_data['overall_used']}% used • {self.usage_data['overall_remaining']}% remaining"
         )
         progress.set_sensitive(False)
@@ -108,7 +108,7 @@ class GrokUsageMonitor:
         graph_text = "Daily use (% of weekly)\n\n"
         for day, values in self.usage_data["daily"].items():
             total = sum(values.values())
-            bar = "\u2588" * (total // 3) + "\u2591" * (10 - total // 3)
+            bar = "█" * (total // 3) + "░" * (10 - total // 3)
             graph_text += f"{day}: {bar} {total}%\n"
         graph_label.set_text(graph_text)
         graph_label.set_xalign(0.0)
